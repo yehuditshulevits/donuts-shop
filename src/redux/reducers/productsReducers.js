@@ -127,23 +127,29 @@ const products = [{
     price: 55
 },
 ];
-export default function productsReducer(state =products, index, action ) {
+// export default function productsReducer(state =products, index, action ) {
+//     switch (action.type) {
+//         case "ADD_QTY":{
+//             return{...state, state[index].qty=action.payload}
+//         }
+            
+//             break;
+//         case "DECREASE_QTY":
+
+//         default:
+//             break;
+//     }
+export default function productsReducer(state = products, action) {
     switch (action.type) {
-        case "ADD_QTY":{
-            
-        }
-            
-            break;
-        case "DECREASE_QTY":
-
-        default:
-            break;
+      case 'ADDQTY':
+        return state.map((product) =>
+          product.id === action.productId ? { ...product, gty: product.gty + 1 } : product
+        );
+      case 'DECREASEQTY':
+        return state.map((product) =>
+          product.id === action.productId ? { ...product, gty: product.gty - 1 } : product
+        );
+      default:
+        return state;
     }
-
-    
-
-
-    return (
-        <div></div>
-    )
-}
+  }

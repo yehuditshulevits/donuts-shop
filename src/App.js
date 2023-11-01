@@ -14,11 +14,15 @@
 import './App.css';
 import NavUp from './NavUp';
 import SingelCard from './singelCard';
+import { Provider } from 'react-redux';
+import Store from './redux/Store';
 
 function App() {
   return (
     // <NavUp></NavUp>
-   <SingelCard></SingelCard>
+    <Provider store={Store}>
+      <SingelCard></SingelCard>
+    </Provider>
   );
 }
 

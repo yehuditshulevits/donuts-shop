@@ -1,9 +1,9 @@
 import React from "react";
 import "./NavUp.css";
 import img1 from './images/logo.png';
-import img2 from './images/12.png';
-import img3 from './images/13.png';
-import img4 from './images/14.png';
+import img2 from './images/slide1.jpg';
+import img3 from './images/slide2.jpg';
+import img4 from './images/slide3.webp';
 import Carousel from "react-bootstrap/Carousel";
 
 
