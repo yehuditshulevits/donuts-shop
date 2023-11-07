@@ -14,10 +14,11 @@ import img12 from '../../images/12.png';
 import img13 from '../../images/13.png';
 import img14 from '../../images/14.png';
 
-const products = [{
+const products = [
+{
     id: 1,
     name: 'דונאט ריבת חלב',
-    gty: 13,
+    qty: 13,
     image: img1,
     description: "שוקולד וקורקטים",
     price: 14
@@ -25,7 +26,7 @@ const products = [{
 {
     id: 2,
     name: 'דונאט וניל קלאסי',
-    gty: 15,
+    qty: 15,
     image: img2,
     description: "מצופה וניל מעולה",
     price: 14
@@ -33,23 +34,23 @@ const products = [{
 {
     id: 3,
     name: 'דונאט חלבה',
-    gty: 12,
-    image: img3,
-    description: "מצופה ברם חלבה",
+    qty: 12,
+    image:img3,
+    description: "מצופה קרם חלבה",
     price: 14
 },
 {
     id: 4,
     name: ' דונאט קרם פיסטוק',
-    gty: 12,
-    image: img4,
+    qty: 12,
+    image:img4,
     description: "קרם פיסטוק מעודן",
     price: 14
 },
 {
     id: 5,
     name: 'דונאט קרם אוראו',
-    gty: 17,
+    qty: 17,
     image: img5,
     description: "מצופה קרם+עוגיות",
     price: 14
@@ -57,7 +58,7 @@ const products = [{
 {
     id: 6,
     name: 'דונאט גלי תות',
-    gty: 20,
+    qty: 20,
     image: img6,
     description: 'דונאט גלי תות מיוחד',
     price: 14.0
@@ -65,7 +66,7 @@ const products = [{
 {
     id: 7,
     name: 'דונאט עוגיות לוטוס',
-    gty: 14,
+    qty: 14,
     image:img7,
     description: 'דונאט עוגיות לוטוס',
     price: 14.0,
@@ -73,7 +74,7 @@ const products = [{
 {
     id: 8,
     name: 'דונאט שוקולד מריר',
-    gty: 10,
+    qty: 10,
     image:img8,
     description: 'דונאט שוקולד מריר',
     price: 14.0
@@ -81,7 +82,7 @@ const products = [{
 {
     id: 9,
     name: 'דונאט קרם אוכמניות',
-    gty: 13,
+    qty: 13,
     image:img9,
     description: 'דונאט קרם אוכמניות',
     price: 14.0
@@ -89,7 +90,7 @@ const products = [{
 {
     id: 10,
     name: 'דונאט שוקולד עדשים',
-    gty: 25,
+    qty: 25,
     image:img10,
     description: 'דונאט שוקולד עדשים',
     price: 14.0,
@@ -97,7 +98,7 @@ const products = [{
 {
     id: 11,
     name: 'מארז 3 דונאטס',
-    gty: 10,
+    qty: 10,
     image: img11,
     description: "3 דונאטים לבחירה",
     price:33
@@ -105,7 +106,7 @@ const products = [{
 {
     id: 12,
     name: 'מארז 18 דונאטים',
-    gty: 5,
+    qty: 5,
     image: img12,
     description: "18 דונאטים לבחירה",
     price: 140
@@ -113,7 +114,7 @@ const products = [{
 {
     id: 13,
     name: 'מארז 9 דונאטס',
-    gty: 7,
+    qty: 7,
     image: img13,
     description: "9 דונאטים לבחירה",
     price: 75
@@ -121,35 +122,25 @@ const products = [{
 {
     id: 14,
     name: 'מארז 6 דונאטים',
-    gty: 10,
+    qty: 10,
     image: img14,
     description: "6 דונאטים לבחירה",
-    price: 55
+    price:  55
 },
 ];
-// export default function productsReducer(state =products, index, action ) {
-//     switch (action.type) {
-//         case "ADD_QTY":{
-//             return{...state, state[index].qty=action.payload}
-//         }
-            
-//             break;
-//         case "DECREASE_QTY":
 
-//         default:
-//             break;
-//     }
-export default function productsReducer(state = products, action) {
+  const productsReducers=(state = products, action) =>{
     switch (action.type) {
       case 'ADDQTY':
         return state.map((product) =>
-          product.id === action.productId ? { ...product, gty: product.gty + 1 } : product
+          product.id === action.productId ? { ...product, qty: product.qty + 1 } : product
         );
       case 'DECREASEQTY':
         return state.map((product) =>
-          product.id === action.productId ? { ...product, gty: product.gty - 1 } : product
+          product.id === action.productId ? { ...product, qty: product.qty - 1 } : product
         );
       default:
         return state;
     }
   }
+  export default productsReducers;

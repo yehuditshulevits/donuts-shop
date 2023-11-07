@@ -1,7 +1,8 @@
 import { createStore } from "redux";
-import allReducers from './reducers/combineReducers';
-const Store = createStore(
-    allReducers,
+import AllReducers from "./reducers/combineReducers";
+
+const Store=createStore(
+    AllReducers
 );
 Store.getState();
 export default Store;

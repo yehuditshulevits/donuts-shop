@@ -1,6 +1,6 @@
 export const changeAddQty = (id, qty) => {
     return {
-        type:ADDQTY,
+        type:"ADDQTY",
         payload:qty,
         productId:id
     }
@@ -8,7 +8,7 @@ export const changeAddQty = (id, qty) => {
 
 export const  changeDecreaseQty= (id, qty) => {
     return {
-        type:DECREASEQTY,
+        type:"DECREASEQTY",
         payload:qty,
         productId:id
     }
