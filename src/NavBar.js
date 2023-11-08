@@ -1,56 +1,70 @@
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import { useDispatch, useSelector } from 'react-redux';
+import { Badge, Table } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import { deleteFromCart } from './redux/actions/cartAction';
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 function NavBar() {
+    const cart = useSelector((state) => state.cartReducers);
+    const dispatch = useDispatch()
+
     return (
         <>
             {[false].map((expand) => (
                 <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
                     <Container fluid>
                         <Navbar.Brand href="#">Donatina</Navbar.Brand>
-                        <Navbar.Toggle aria-controls = {`offcanvasNavbar-expand-${expand}`}/>
-                        <Navbar.Offcanvas
+                        <Navbar.Toggle><Badge bg="secondary">{cart.length}</Badge><AiOutlineShoppingCart /></Navbar.Toggle>                        <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
                             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                             placement="end"
                         >
                             <Offcanvas.Header closeButton>
                                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                                    Offcanvas
+                                    עגלת הקניות שלך
                                 </Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body>
-                                <Nav className="justify-content-end flex-grow-1 pe-3">
-                                    <Nav.Link href="#action1">Home</Nav.Link>
-                                    <Nav.Link href="#action2">Link</Nav.Link>
-                                    <NavDropdown
-                                        title="Dropdown"
-                                        id={`offcanvasNavbarDropdown-expand-${expand}`}
-                                    >
-                                        <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                        <NavDropdown.Item href="#action4">
-                                            Another action
-                                        </NavDropdown.Item>
-                                        <NavDropdown.Divider />
-                                        <NavDropdown.Item href="#action5">
-                                            Something else here
-                                        </NavDropdown.Item>
-                                    </NavDropdown>
-                                </Nav>
-                                <Form className="d-flex">
-                                    <Form.Control
-                                        type="search"
-                                        placeholder="Search"
-                                        className="me-2"
-                                        aria-label="Search"
-                                    />
-                                    <Button variant="outline-success">Search</Button>
-                                </Form>
+                                <Nav className="justify-content-end flex-grow-1 pe-3"></Nav>
+                                {cart.length > 0 ?
+                                    <>
+                                        <Table striped bordered hover style={{ width: '50%', marginRight: '25%', marginLeft: '25%' }}>
+                                            <tr>
+                                                <th></th>
+                                                <th style={{ textAlign: "center" }}>מחיר</th>
+                                                <th style={{ textAlign: "center" }}>כמות</th>
+                                                <th style={{ textAlign: "center" }}>תמונה</th>
+                                                <th style={{ textAlign: "center" }}>שם המוצר</th>
+                                            </tr>
+                                            {cart.map((item) => (
+                                                <>
+                                                    <tr>
+                                                        <td style={{ textAlign: "center" }}><Button style={{ backgroundColor: "#F5D43E", color: "black", borderColor: "white" }} onClick={(e) => {
+                                                            debugger
+                                                            e.preventDefault();
+                                                            dispatch(deleteFromCart(item))
+                                                            console.log(cart)
+                                                        }}
+                                                        > X </Button></td>
+                                                        <td style={{ textAlign: "center" }}>{item.price * item.qty} ₪</td>
+                                                        <td style={{ textAlign: "center" }}>
+                                                            {item.qty}
+                                                        </td>
+
+                                                        <td style={{ textAlign: "center" }}><img src={item.img} style={{ width: 75, height: 75 }} /></td>
+                                                        <td style={{ textAlign: "center" }}>{item.name}</td>
+                                                    </tr>
+                                                </>
+                                            ))}
+                                        </Table><br /><br />
+                                        <br /><br />
+                                    </>
+                                    : <h1 dir='rtl' style={{ color: "gray" }}>עגלת הקניות שלכם ריקה :(</h1>
+                                }
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
                     </Container>

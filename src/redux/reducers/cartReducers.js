@@ -1,18 +1,4 @@
 const Cart = [];
-
-// export default function cartReducer(state = productsInCart, action) {
-//     switch (action.type) {
-//         case 'ADDTOCART':
-//             state.items.push(item);
-//             return state;
-//         case 'DELETEFROMCART':
-//             return {
-//                 state: state.splice(state.findIndex(product => product.id === action.productId), 1),
-//             };
-//         default:
-//             return state;
-//     }
-//}
 const cartReducer = (state = Cart, action) => {
     
     if (action.type === "ADD_TO_CART") {
@@ -34,7 +20,7 @@ const cartReducer = (state = Cart, action) => {
 
     }
     if (action.type === "DELETE_FROM_CART")
-        state = state.filter(p => p.code != action.payload.code)
+        state = state.filter(p => p.id !== action.payload.id)
     console.log(Cart)
     return state
 };
