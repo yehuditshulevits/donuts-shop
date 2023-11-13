@@ -32,6 +32,8 @@ import img30 from '../../images/30.png';
 import img31 from '../../images/31.png';
 import img32 from '../../images/32.png';
 import img33 from '../../images/33.png';
+import img34 from '../../images/34.png';
+import img35 from '../../images/35.png';
 
 const products = [
     {
@@ -289,6 +291,23 @@ const products = [
         description: "6 דונאטים לבחירה",
         price: 55
     },
+    {
+        id: 34,
+        name: 'מארז 4 סטיקים',
+        qty: 10,
+        image: img34,
+        description: "לבחירה 4",
+        price: 25
+    },
+    {
+        id: 35,
+        name: 'מארז 20 בייטס ',
+        qty: 10,
+        image: img35,
+        description: "לבחירה 20",
+        price: 30
+    },
+    
 
 
 ];
