@@ -7,9 +7,11 @@ import { Badge, Table } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { deleteFromCart } from './redux/actions/cartAction';
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import './NavBar.css';
 
 function NavBar() {
     const cart = useSelector((state) => state.cartReducers);
+    debugger
     const dispatch = useDispatch()
 
     return (
@@ -32,7 +34,8 @@ function NavBar() {
                                 <Nav className="justify-content-end flex-grow-1 pe-3"></Nav>
                                 {cart.length > 0 ?
                                     <>
-                                        <Table striped bordered hover style={{ width: '50%', marginRight: '25%', marginLeft: '25%' }}>
+                                    
+                                        <Table striped bordered hover style={{ width: '50%', marginRight: '25%', marginLeft: '25%'}}>
                                             <tr>
                                                 <th></th>
                                                 <th style={{ textAlign: "center" }}>מחיר</th>
@@ -41,35 +44,43 @@ function NavBar() {
                                                 <th style={{ textAlign: "center" }}>שם המוצר</th>
                                             </tr>
                                             {cart.map((item) => (
+                                                console.log(item.price),
+                                                console.log(item.qty),
                                                 <>
                                                     <tr>
-                                                        <td style={{ textAlign: "center" }}><Button style={{ backgroundColor: "#F5D43E", color: "black", borderColor: "white" }} onClick={(e) => {
+                                                        <td style={{ textAlign: "center" }}><Button style={{
+                                                            backgroundColor: "#99ddff", color: "black", borderColor: "white" }} onClick={(e) => {
                                                             debugger
                                                             e.preventDefault();
                                                             dispatch(deleteFromCart(item))
                                                             console.log(cart)
                                                         }}
                                                         > X </Button></td>
-                                                        <td style={{ textAlign: "center" }}>{item.price * item.qty} ₪</td>
-                                                        <td style={{ textAlign: "center" }}>
-                                                            {item.qty}
-                                                        </td>
+                                                        
+                                                    <td style={{ textAlign: "center" }}> ₪ {item.price}</td>
+                                                    <td style={{ textAlign: "center" }}>
+                                                        {item.qty}
+                                                    </td>
+                                                    {/* console.log("img:" item.img) */}
+                                                    <td style={{ textAlign: "center" }}><img src={item.image} style={{ width: 100, height: 75 }} /></td>
+                                                    <td style={{ textAlign: "center" }}>{item.name}</td>
+                                                </tr >
 
-                                                        <td style={{ textAlign: "center" }}><img src={item.img} style={{ width: 75, height: 75 }} /></td>
-                                                        <td style={{ textAlign: "center" }}>{item.name}</td>
-                                                    </tr>
                                                 </>
                                             ))}
-                                        </Table><br /><br />
-                                        <br /><br />
-                                    </>
-                                    : <h1 dir='rtl' style={{ color: "gray" }}>עגלת הקניות שלכם ריקה :(</h1>
+                                    </Table><br /><br />
+                                    
+                                <br /><br />
+                            </>
+                            : <h1 dir='rtl' style={{ color: "gray" }}>עגלת הקניות שלכם ריקה :(</h1>
                                 }
-                            </Offcanvas.Body>
-                        </Navbar.Offcanvas>
-                    </Container>
-                </Navbar>
-            ))}
+                        </Offcanvas.Body>
+
+                    </Navbar.Offcanvas>
+                </Container>
+                </Navbar >
+            ))
+}
         </>
     );
 }

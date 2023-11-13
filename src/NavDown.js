@@ -1,11 +1,12 @@
 import Nav from 'react-bootstrap/Nav';
+import { BsFillCaretUpFill } from "react-icons/bs";
 
 export default function NavDown() {
     return (
 
         <Nav className="justify-content-center" activeKey="/home">
             <Nav.Item>
-                <Nav.Link href="/home">לראש העמוד</Nav.Link>
+                <Nav.Link href="/home"><BsFillCaretUpFill></BsFillCaretUpFill></Nav.Link>
             </Nav.Item>
             <Nav.Item>
                 <Nav.Link eventKey="disabled" disabled>

@@ -10,7 +10,10 @@ import { changeDecreaseQty } from './redux/actions/productAction';
 export default function SingleCard() {
   const products = useSelector((state) => state.productsReducers);
   const dispatch = useDispatch()
-  
+
+  const showAlert = (name) =>
+    alert(`${name} נוסף להזמנה בהצלחה!`);
+
   const renderCards = () => {
     const rows = [];
     debugger
@@ -23,7 +26,7 @@ export default function SingleCard() {
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>{item.description}</Card.Text>
-                <Card.Text>{item.price}</Card.Text>
+                <Card.Text>₪ {item.price}</Card.Text>
                 <Button onClick={(e) => {
                   e.preventDefault();
                   debugger
@@ -32,7 +35,8 @@ export default function SingleCard() {
                   // console.log(.qty - amount, "id" + props.products.id)
                   debugger
                   dispatch(addToCart(item, 1))
-                  // setAmount(1);
+                  showAlert(item.name)
+
                 }}
                   variant="primary"
                 > הוסף להזמנה < svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
