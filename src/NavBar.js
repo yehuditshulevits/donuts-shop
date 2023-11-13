@@ -8,19 +8,25 @@ import Button from 'react-bootstrap/Button';
 import { deleteFromCart } from './redux/actions/cartAction';
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import './NavBar.css';
+import React, { useNavigate } from 'react';
+
 
 function NavBar() {
     const cart = useSelector((state) => state.cartReducers);
     debugger
     const dispatch = useDispatch()
+    const navigate = useNavigate();
 
+    const handleClick = () => {
+        navigate('/my-component');
+    }
     return (
         <>
             {[false].map((expand) => (
                 <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
                     <Container fluid>
                         <Navbar.Brand href="#">Donatina</Navbar.Brand>
-                        <Navbar.Toggle><Badge bg="secondary">{cart.length}</Badge><AiOutlineShoppingCart /></Navbar.Toggle>                        <Navbar.Offcanvas
+                        <Navbar.Toggle><Badge bg="secondary">{cart.length}</Badge><AiOutlineShoppingCart /></Navbar.Toggle><Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
                             aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                             placement="end"
@@ -34,8 +40,8 @@ function NavBar() {
                                 <Nav className="justify-content-end flex-grow-1 pe-3"></Nav>
                                 {cart.length > 0 ?
                                     <>
-                                    
-                                        <Table striped bordered hover style={{ width: '50%', marginRight: '25%', marginLeft: '25%'}}>
+
+                                        <Table striped bordered hover style={{ width: '50%', marginRight: '25%', marginLeft: '25%' }}>
                                             <tr>
                                                 <th></th>
                                                 <th style={{ textAlign: "center" }}>מחיר</th>
@@ -49,38 +55,42 @@ function NavBar() {
                                                 <>
                                                     <tr>
                                                         <td style={{ textAlign: "center" }}><Button style={{
-                                                            backgroundColor: "#99ddff", color: "black", borderColor: "white" }} onClick={(e) => {
+                                                            backgroundColor: "#99ddff", color: "black", borderColor: "white"
+                                                        }} onClick={(e) => {
                                                             debugger
                                                             e.preventDefault();
                                                             dispatch(deleteFromCart(item))
                                                             console.log(cart)
                                                         }}
                                                         > X </Button></td>
-                                                        
-                                                    <td style={{ textAlign: "center" }}> ₪ {item.price}</td>
-                                                    <td style={{ textAlign: "center" }}>
-                                                        {item.qty}
-                                                    </td>
-                                                    {/* console.log("img:" item.img) */}
-                                                    <td style={{ textAlign: "center" }}><img src={item.image} style={{ width: 100, height: 75 }} /></td>
-                                                    <td style={{ textAlign: "center" }}>{item.name}</td>
-                                                </tr >
+
+                                                        <td style={{ textAlign: "center" }}> ₪ {item.price}</td>
+                                                        <td style={{ textAlign: "center" }}>
+                                                            {item.qty}
+                                                        </td>
+                                                        {/* console.log("img:" item.img) */}
+                                                        <td style={{ textAlign: "center" }}><img src={item.image} style={{ width: 100, height: 75 }} /></td>
+                                                        <td style={{ textAlign: "center" }}>{item.name}</td>
+                                                    </tr >
 
                                                 </>
                                             ))}
-                                    </Table><br /><br />
-                                    
-                                <br /><br />
-                            </>
-                            : <h1 dir='rtl' style={{ color: "gray" }}>עגלת הקניות שלכם ריקה :(</h1>
-                                }
-                        </Offcanvas.Body>
+                                        </Table><br /><br />
 
-                    </Navbar.Offcanvas>
-                </Container>
+                                        <br /><br />
+                                        <Button variant="outline-info"
+                                            onClick={handleClick}
+                                        >תשלום</Button>
+                                    </>
+                                    : <h1 dir='rtl' style={{ color: "gray" }}>עגלת הקניות שלכם ריקה :(</h1>
+                                }
+                            </Offcanvas.Body>
+
+                        </Navbar.Offcanvas>
+                    </Container>
                 </Navbar >
             ))
-}
+            }
         </>
     );
 }
