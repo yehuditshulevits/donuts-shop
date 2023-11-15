@@ -1,0 +1,26 @@
+.add-to-cart-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  /* Box shadow */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  /* Hover effect */
+  &:hover {
+    background-color: #0069d9;
+  }
+
+  /* Active state */
+  &:active {
+    background-color: #0060bf;
+  }
+
+  /* Transition */
+  transition: all 0.2s ease-in-out;
+}
